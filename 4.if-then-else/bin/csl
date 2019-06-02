@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# csl
+# This script compares the file count of two directories
+# Author: alexandru.d.grosu@gmail.com
+
+# Check number of arguments
+if [[ $# -ne 2 ]]; then
+    echo "Needs exactly 2 arguments, supplied $#"
+    exit 1
+fi
+
+# Both arguments should be directories
+if [[ ! -d $1 ]]; then
+    echo "'$1' is not a directory"
+    exit 1
+fi
+
+if [[ ! -d $2 ]]; then
+    echo "'$2' is not a directory"
+    exit 1
+fi
+
+dir1="$1"
+dir2="$2"
+
+# Get the number of files in each directory
+count_dir1=$(ls -A1 "$dir1" | wc -l)
+count_dir2=$(ls -A1 "$dir2" | wc -l)
+
+if [[ $count_dir1 -gt $count_dir2 ]]; then
+    echo "${dir1} has more files"
+elif [[ $count_dir1 -eq $count_dir2 ]]; then
+    echo "Number of files are equal"
+else
+    echo "${dir2} has more files"
+fi
+
+exit 0

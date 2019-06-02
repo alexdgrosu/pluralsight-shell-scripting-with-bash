@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# csl
+# This script compares the the length of two strings
+# Author: alexandru.d.grosu@gmail.com
+
+# Check number of arguments
+if [[ $# -ne 2 ]]; then
+    echo "Needs exactly 2 arguments, supplied $#"
+    exit 1
+fi
+
+length_1=${#1}
+length_2=${#2}
+
+if [[ $length_1 -gt $length_2 ]]; then
+    echo "$1 is the longest"
+elif [[ $length_1 -eq $length_2 ]]; then
+    echo "Length is equal"
+else
+    echo "$2 is the longest"
+fi
+
+exit 0

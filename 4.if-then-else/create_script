@@ -1,0 +1,51 @@
+#!/bin/bash 
+
+# create_script
+# This script creates a new bash script, sets permissions and more
+# Author: alexandru.d.grosu@gmail.com
+
+# Check if there is an argument
+
+if [[ ! $1 ]]; then
+    echo "Missing argument"
+    exit 1
+fi
+
+scriptname="$1"
+bindir="$(pwd)/bin"
+filename="${bindir}/${scriptname}"
+
+# Check if file exists
+if [[ -e $filename ]]; then
+    echo "File ${filename} already exists"
+    exit 1
+fi
+
+if type "$scriptname"; then
+    echo "There is already a command with name ${scriptname}"
+    exit 1
+fi
+
+# Check if dir exists
+if [[ ! -d $bindir ]]; then
+    # If not, create it
+    if mkdir "$bindir"; then
+        echo "Created ${bindir}"
+    else
+        echo "Could not create ${bindir}"
+        exit 1
+    fi
+fi
+
+# Create a script with shebang
+echo '#!/bin/bash' > "$filename"
+
+# Add executable permissions
+chmod u+x "$filename"
+
+# Open file in editor if $EDITOR is set
+if [[ $EDITOR ]]; then
+    $EDITOR "$filename"
+fi
+
+exit 0
