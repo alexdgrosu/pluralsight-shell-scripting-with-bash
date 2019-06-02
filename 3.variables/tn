@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Get the date
+date=$(date)
+
+# Get the topic
+topic="$1"
+
+# Begin debugging (or set it in the shebang for whole script)
+set -x
+
+# File to write to
+filename="${topic}notes.txt"
+
+# Ask for user input
+read -p "Your note: " note
+
+# End debugging
+set +x
+
+echo "$date: $note" >> "$filename"
+echo "Note '$note' saved to $filename"
