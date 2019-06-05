@@ -1,0 +1,3 @@
+Wed, Jun  5, 2019  5:21:17 PM: Some note
+Wed, Jun  5, 2019  5:22:59 PM: this note came from a file
+Wed, Jun  5, 2019  5:25:53 PM: a note
