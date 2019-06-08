@@ -1,0 +1,12 @@
+#!/bin/bash
+
+case $1 in
+    [Cc]at)
+        echo "Meow!";;
+    [Dd]og)
+        echo "Woof!";;
+    [Cc]ow)
+        echo "Mooo!";;
+    *)
+        echo "Uknown animal"
+esac
