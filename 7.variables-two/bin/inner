@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo "inner before: $var"
+
+# Note: var is marked as read-only in parrent process, however it doesn't matter here
+export var="inner"
+
+echo "inner after: $var"

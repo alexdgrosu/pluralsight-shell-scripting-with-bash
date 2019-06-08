@@ -1,0 +1,9 @@
+#!/bin/bash
+
+declare -xr var="outer"
+
+echo "outer before: $var"
+
+./bin/inner
+
+echo "outer after: $var"
