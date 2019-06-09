@@ -1,0 +1,16 @@
+#!/bin/bash
+
+declare -i count=0
+
+count_lines () {
+    while read -r; do
+        ((++count))
+    done
+    echo $count
+}
+
+# Since we pipe the output, the count_lines function runs in a sub-shell which does not have access to the current $count
+$* | count_lines
+echo $count
+
+exit 0
