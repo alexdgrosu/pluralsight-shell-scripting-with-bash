@@ -1,0 +1,36 @@
+#!/bin/bash
+# Get the date
+declare -r date=$(date)
+
+# Get the topic
+declare -r topic="$1"
+
+declare -r currentdir=$(pwd)
+declare notesdir=${NOTESDIR:-$currentdir}
+
+# Does the default directory or the one set by the user exist? If not, create it
+if [[ ! -d $notesdir ]]; then
+    mkdir -- "$notesdir" 2> /dev/null || { echo "Cannot make directory ${notesdir}" 1>&2; exit 1; }
+fi
+
+# File name to write to
+declare -r filename="${notesdir}/${topic}notes.txt"
+
+
+# Does file exist? If not, create it
+if [[ ! -f $filename ]]; then
+    touch -- "$filename" 2> /dev/null || { echo "Cannot create file ${filename}" 1>&2; exit 1; }
+fi
+
+# Is file writeable?
+[[ -w $filename ]] || { echo "${filename} is not writeable" 1>&2; exit 1; }
+
+# Ask for user input
+read -p "Your note: " note
+
+if [[ $note ]]; then
+    echo "$date: $note" >> "$filename"
+    echo "Note '$note' saved to $filename" 1>&2
+else 
+    echo "No input; note wasn't saved" 1>&2
+fi
